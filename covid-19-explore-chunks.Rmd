@@ -13,7 +13,7 @@ library(dplyr)
 library(tidyr)
 library(readr)
 
-data <- read_csv('/home/silas/Desktop/covid-deaths.csv')
+data <- read_csv('/home/silas/https:/github.com/silasbea/covid-19-explore/covid-deaths.csv')
 
 data %>% 
   filter(location != 'World' & location != 'High income' & location != 'Upper middle income' & location != 'Europe' & location != 'Asia' & location != 'Africa' & location != 'North America' & location != 'South America' & location != 'Lower middle income' & location != 'European Union' & location != 'Low income') %>%
