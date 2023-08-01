@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
-    source_code: "https://github.com/silasbea/covid-19-exp"
+    source_code: "https://github.com/silasbea/covid-19-explore"
 ---
 
 ```{r setup, include=FALSE}
