@@ -1,36 +1,125 @@
 ---
-title: "COVID-19 Deaths and Vaccinations"
+title: "Exploratory Data Analysis on COVID-19 Data on Kaggle"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    source_code: "https://github.com/silasbea/covid-19-exp"
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(dplyr)
+library(tidyr)
+library(readr)
+
+data <- read_csv('/home/silas/Desktop/covid-deaths.csv')
+
+data %>% 
+  filter(location != 'World' & location != 'High income' & location != 'Upper middle income' & location != 'Europe' & location != 'Asia' & location != 'Africa' & location != 'North America' & location != 'South America' & location != 'Lower middle income' & location != 'European Union' & location != 'Low income') %>%
+  select(location, population, continent, total_deaths, total_cases, icu_patients, new_deaths_smoothed) %>% 
+  arrange(desc(total_deaths))  -> messy_countries
+   
+messy_countries %>% 
+  group_by(location) %>% 
+  summarise(across(everything(), first)) -> countries
+
+
 ```
+# Home
+## Column {data-width="600" .tabset}
 
-Column {data-width=650}
------------------------------------------------------------------------
-
-### Chart A
+### COVID deaths by countries
 
 ```{r}
+library(dplyr)
+library(ggplot2)
+library(plotly)
+
+countries %>% 
+  filter(total_deaths > 94000) %>% 
+  ggplot(mapping = aes(x = total_deaths, y = location, color = continent, shape = continent)) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(
+    x = "Total Human Deaths",
+    y = 'Countries'
+  )-> plot
+
+ggplotly(plot)
 
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
+### Total cases by location
 
 ```{r}
+library(dplyr)
+library(ggplot2)
+library(plotly)
 
+countries %>% 
+  filter(total_deaths > 94000) %>% 
+  ggplot(mapping = aes(x = total_cases, y = location, color = continent, shape = continent)) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(
+    x = "COVID-19 Cases per country",
+    y = 'Countries'
+  )-> plot
+
+ggplotly(plot)
 ```
 
-### Chart C
+
+## Column {data-width="600" .tabset}
+
+### New deaths by Continent
 
 ```{r}
+library(dplyr)
+library(ggplot2)
+library(plotly)
 
+countries %>% 
+  filter(total_deaths > 94000) %>% 
+  ggplot(mapping = aes(x = new_deaths_smoothed, y = continent, color = continent)) +
+  geom_line(size = 2) +
+  #theme_classic() +
+  labs(
+    x = "New Death Cases",
+    y = 'Continents'
+  )-> plot
+
+ggplotly(plot)
 ```
 
+### Distribution by Boxplot
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+countries %>% 
+  filter(total_deaths > 94000) %>% 
+  ggplot(mapping = aes(x = new_deaths_smoothed, y = continent, fill = continent)) +
+  geom_boxplot() +
+  #theme_classic() +
+  labs(
+    x = "New Death Cases",
+    y = 'Continents'
+  )-> plot
+
+plot
+```
+
+
+# About the Dataset
+This EDA, assumptions and inferences are drawn from the Covid-19 deaths and vaccinations Dataset on
+Kaggle.com. The Covid-19 deaths dataset contains data including total deaths and new deaths, across different
+locations and time periods. 
+
+By exploring and analyzing this data, we uncover insights into the global impact of
+Covid-19 and explore the relationship between locations, continents and deaths resulting. 
+
+This dataset is a
+valuable resource for researchers, data analysts, and anyone interested in understanding the ongoing pandemic.
