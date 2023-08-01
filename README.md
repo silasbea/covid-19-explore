@@ -44,6 +44,9 @@ weekly_icu_admissions_per_million: The weekly number of patients admitted to int
 weekly_hosp_admissions: The weekly number of patients admitted to hospital with Covid-19.
 weekly_hosp_admissions_per_million: The weekly number of patients admitted to hospital with Covid-19, per million people.
 ```
+Hosted at;
+
+https://silasbea.shinyapps.io/covid-19-explore/
 
 Enjoy!
 
