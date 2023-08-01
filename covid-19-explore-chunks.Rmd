@@ -5,6 +5,8 @@ output:
     orientation: columns
     vertical_layout: fill
     source_code: "https://github.com/silasbea/covid-19-explore"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +15,7 @@ library(dplyr)
 library(tidyr)
 library(readr)
 
-data <- read_csv('/home/silas/https:/github.com/silasbea/covid-19-explore/covid-deaths.csv')
+data <- read_csv('covid-deaths.csv')
 
 data %>% 
   filter(location != 'World' & location != 'High income' & location != 'Upper middle income' & location != 'Europe' & location != 'Asia' & location != 'Africa' & location != 'North America' & location != 'South America' & location != 'Lower middle income' & location != 'European Union' & location != 'Low income') %>%
