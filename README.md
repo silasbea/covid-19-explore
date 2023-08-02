@@ -12,7 +12,7 @@ The second file contains data on Covid-19 vaccinations, including total vaccinat
 
 This dataset is a valuable resource for researchers, data analysts, and anyone interested in understanding the ongoing pandemic.
 
-![](/home/silas/Pictures/covid-eda-shot.jpg)
+![screenshot](covid-eda-shot.jpg)
 
 COVID DEATHS Columns
 
@@ -44,9 +44,10 @@ weekly_icu_admissions_per_million: The weekly number of patients admitted to int
 weekly_hosp_admissions: The weekly number of patients admitted to hospital with Covid-19.
 weekly_hosp_admissions_per_million: The weekly number of patients admitted to hospital with Covid-19, per million people.
 ```
+
 Hosted at;
 
-https://silasbea.shinyapps.io/covid-19-explore/
+<https://silasbea.shinyapps.io/covid-19-explore/>
 
 Enjoy!
 
